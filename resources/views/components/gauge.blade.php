@@ -8,7 +8,7 @@
 <svg viewBox="0 0 200 112" class="w-full max-w-[240px] mx-auto" role="img" aria-label="المؤشر {{ $value }} — {{ $label }}">
     <defs>
         <linearGradient id="gauge-grad" x1="0" x2="1" y1="0" y2="0">
-            <stop offset="0%" stop-color="#16a34a"/><stop offset="50%" stop-color="#ca8a04"/><stop offset="100%" stop-color="#dc2626"/>
+            <stop offset="0%" stop-color="#16a34a"/><stop offset="50%" stop-color="#f97316"/><stop offset="100%" stop-color="#dc2626"/>
         </linearGradient>
     </defs>
     <path d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="url(#gauge-grad)" stroke-width="14" stroke-linecap="round"/>

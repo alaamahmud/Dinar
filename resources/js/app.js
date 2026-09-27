@@ -97,7 +97,7 @@ document.querySelectorAll('[data-price-chart]').forEach(initPriceChart);
 /* رسوم ثابتة: البيانات مضمّنة في الصفحة */
 function initStaticChart(el) {
     const cfg = JSON.parse(el.dataset.staticChart);
-    const colors = { brand: '#0f9f7f', gold: '#c99a2e', down: css('--down'), up: css('--up'), muted: css('--muted') };
+    const colors = { brand: '#0f9f7f', gold: '#2563eb', down: css('--down'), up: css('--up'), muted: css('--muted') };
     const datasets = cfg.datasets.map((ds) => ({
         borderWidth: 2, pointRadius: 0, tension: 0.3, ...ds,
         borderColor: colors[ds.color] || ds.color || colors.brand,

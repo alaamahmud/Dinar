@@ -63,7 +63,7 @@ class FearIndex
         [$label, $color] = match (true) {
             $value < 25 => ['هدوء تام', '#16a34a'],
             $value < 45 => ['هدوء', '#65a30d'],
-            $value < 56 => ['محايد', '#ca8a04'],
+            $value < 56 => ['محايد', '#64748b'],
             $value < 75 => ['قلق', '#ea580c'],
             default => ['ذعر', '#dc2626'],
         };

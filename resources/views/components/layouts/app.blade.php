@@ -21,7 +21,7 @@
 <body class="min-h-screen antialiased" data-refresh="30000">
 @php($demo = \App\Models\Setting::get('demo_mode'))
 @if ($demo)
-    <div class="bg-gold-500 text-[#1b1405] text-center text-xs font-semibold py-1.5 px-4">
+    <div class="bg-slate-800 text-white text-center text-xs font-semibold py-1.5 px-4">
         وضع تجريبي: الأسعار المعروضة محاكاة لغرض العرض وليست أسعار السوق الحقيقية
     </div>
 @endif
@@ -56,7 +56,7 @@
                 </a>
             @else
                 <a href="{{ route('login') }}" class="btn btn-ghost !py-2">دخول</a>
-                <a href="{{ route('pricing') }}" class="btn btn-gold !py-2 hidden sm:inline-flex">💎 اشترك</a>
+                <a href="{{ route('pricing') }}" class="btn btn-accent !py-2 hidden sm:inline-flex">💎 اشترك</a>
             @endauth
             <button data-menu-toggle class="btn btn-ghost !px-2.5 !py-2 lg:hidden" aria-label="القائمة">☰</button>
         </div>

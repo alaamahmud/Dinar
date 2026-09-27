@@ -6,7 +6,7 @@
             <div class="text-2xl mb-1">💎</div>
             <div class="font-bold mb-1">{{ $title }}</div>
             <div class="text-sm text-muted mb-3">متاحة في باقة {{ config("dinar.plans.{$plan}.name") }} بـ {{ money(config("dinar.plans.{$plan}.price")) }} د.ع شهرياً</div>
-            <a href="{{ route('pricing') }}" class="btn btn-gold w-full">اعرف أكثر</a>
+            <a href="{{ route('pricing') }}" class="btn btn-accent w-full">اعرف أكثر</a>
         </div>
     </div>
 </div>

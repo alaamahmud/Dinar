@@ -31,7 +31,7 @@
                     </div>
                 </div>
                 <div class="relative h-56"><canvas></canvas>
-                    <div data-chart-lock class="hidden absolute inset-0 grid place-items-center"><a href="{{ route('pricing') }}" class="btn btn-gold">💎 سنة كاملة في برو</a></div>
+                    <div data-chart-lock class="hidden absolute inset-0 grid place-items-center"><a href="{{ route('pricing') }}" class="btn btn-accent">💎 سنة كاملة في برو</a></div>
                 </div>
             </div>
         @endforeach

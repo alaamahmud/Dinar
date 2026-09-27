@@ -23,7 +23,7 @@
     <div class="grid gap-5 md:grid-cols-3 max-w-5xl mx-auto">
         @foreach (['free', 'pro', 'trader'] as $i => $key)
             @php($plan = $plans[$key])
-            <div class="card card-pad flex flex-col {{ $key === 'pro' ? 'ring-2 ring-gold-500 relative' : '' }}">
+            <div class="card card-pad flex flex-col {{ $key === 'pro' ? 'ring-2 ring-accent-500 relative' : '' }}">
                 @if ($key === 'pro')<span class="badge badge-pro absolute -top-3 right-5">الأكثر طلباً</span>@endif
                 <div class="text-lg font-bold">{{ ['free' => '🆓', 'pro' => '⭐', 'trader' => '💼'][$key] }} {{ $plan['name'] }}</div>
                 <div class="mt-3 mb-5"><span class="num text-4xl font-bold">{{ money($plan['price']) }}</span> <span class="text-muted text-sm">دينار / شهر</span></div>
@@ -36,7 +36,7 @@
                 @if ($key === 'free')
                     <a href="{{ route('register') }}" class="btn btn-ghost mt-6">ابدأ مجاناً</a>
                 @else
-                    <a href="#subscribe" onclick="document.getElementById('plan-select').value='{{ $key }}'" class="btn {{ $key === 'pro' ? 'btn-gold' : 'btn-primary' }} mt-6">اشترك في {{ $plan['name'] }}</a>
+                    <a href="#subscribe" onclick="document.getElementById('plan-select').value='{{ $key }}'" class="btn {{ $key === 'pro' ? 'btn-accent' : 'btn-primary' }} mt-6">اشترك في {{ $plan['name'] }}</a>
                 @endif
             </div>
         @endforeach
@@ -56,7 +56,7 @@
                 <div><label class="label">المدة</label><select name="months" class="input">@foreach ([1 => 'شهر', 3 => '3 أشهر', 6 => '6 أشهر', 12 => 'سنة'] as $m => $l)<option value="{{ $m }}">{{ $l }}</option>@endforeach</select></div>
                 <div><label class="label">طريقة الدفع</label><select name="payment_method" class="input">@foreach ($methods as $k => $l)<option value="{{ $k }}">{{ $l }}</option>@endforeach</select></div>
                 <div><label class="label">رقم العملية / الوصل</label><input name="reference" class="input" required></div>
-                <button class="btn btn-gold sm:col-span-2">إرسال طلب الاشتراك</button>
+                <button class="btn btn-accent sm:col-span-2">إرسال طلب الاشتراك</button>
             </form>
         @else
             <a href="{{ route('register') }}" class="btn btn-primary mt-4">أنشئ حساباً أولاً</a>

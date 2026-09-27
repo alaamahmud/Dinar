@@ -18,13 +18,13 @@ $chartData4 = $places->map(fn ($p) => ["name" => $p->name, "lat" => $p->lat, "ln
         </div>
         <div class="lg:col-span-2 space-y-3 max-h-[440px] overflow-y-auto">
             @foreach ($places as $place)
-                <div class="card card-pad !py-3 {{ $place->isFeatured() ? 'ring-1 ring-gold-500' : '' }}">
+                <div class="card card-pad !py-3 {{ $place->isFeatured() ? 'ring-1 ring-accent-500' : '' }}">
                     <div class="flex justify-between items-start gap-2">
                         <div>
                             <div class="font-bold">{{ $place->type === 'gold' ? '🥇' : '💱' }} {{ $place->name }} @if ($place->isFeatured())<span class="badge badge-pro">مميّز</span>@endif</div>
                             <div class="text-xs text-muted mt-0.5">{{ $place->city?->market_ar }} · {{ $place->address }}</div>
                         </div>
-                        <div class="text-left shrink-0"><div class="font-bold text-gold-600">★ <span class="num">{{ number_format($place->rating_avg, 1) }}</span></div><div class="text-[11px] text-muted">{{ $place->rating_count }} تقييم</div></div>
+                        <div class="text-left shrink-0"><div class="font-bold text-accent-600">★ <span class="num">{{ number_format($place->rating_avg, 1) }}</span></div><div class="text-[11px] text-muted">{{ $place->rating_count }} تقييم</div></div>
                     </div>
                     @auth
                         <form method="POST" action="{{ route('places.review', $place) }}" class="flex gap-1 mt-2 items-center text-sm">

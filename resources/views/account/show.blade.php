@@ -10,7 +10,7 @@
             <div class="text-2xl font-bold mt-1">{{ $user->planName() }} @if ($user->hasPlan('pro'))<span class="badge badge-pro">💎</span>@endif</div>
             @if ($user->plan_expires_at && $user->hasPlan('pro'))<div class="text-sm text-muted mt-1">تنتهي {{ $user->plan_expires_at->translatedFormat('j F Y') }} ({{ $user->plan_expires_at->diffForHumans() }})</div>@endif
             @if ($pending)<div class="mt-3 badge badge-medium">طلب اشتراك {{ config('dinar.plans.'.$pending->plan.'.name') }} قيد المراجعة</div>@endif
-            <a href="{{ route('pricing') }}" class="btn btn-gold w-full mt-4">{{ $user->hasPlan('pro') ? 'تجديد / ترقية' : 'اشترك الآن' }}</a>
+            <a href="{{ route('pricing') }}" class="btn btn-accent w-full mt-4">{{ $user->hasPlan('pro') ? 'تجديد / ترقية' : 'اشترك الآن' }}</a>
             <div class="grid grid-cols-2 gap-2 mt-4 text-center">
                 <div class="surface-2 rounded-xl p-2"><div class="text-xs text-muted">النقاط</div><div class="num font-bold">{{ money($user->points) }}</div></div>
                 <div class="surface-2 rounded-xl p-2"><div class="text-xs text-muted">الثقة</div><div class="num font-bold">{{ round($user->trust_score * 100) }}%</div></div>

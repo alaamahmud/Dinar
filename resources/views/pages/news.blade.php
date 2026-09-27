@@ -34,7 +34,7 @@
                         <span>{{ $item->source_name }}</span>
                         <span>{{ $item->published_at->diffForHumans() }}</span>
                         <span>{{ $item->analyzed_by === 'ai' ? '🤖 ذكاء اصطناعي' : '🔎 كلمات مفتاحية' }}</span>
-                        @if ($item->is_demo)<span class="text-gold-600">خبر تجريبي</span>@endif
+                        @if ($item->is_demo)<span class="text-accent-600">خبر تجريبي</span>@endif
                     </div>
                 </div>
             </article>

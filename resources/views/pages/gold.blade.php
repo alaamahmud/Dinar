@@ -4,7 +4,7 @@
             <h1 class="text-2xl font-bold">🥇 سعر الذهب في العراق</h1>
             <p class="text-muted text-sm mt-1">محسوب من سعر الأونصة العالمي وسعر الدولار في السوق الموازي. الأسعار للذهب الخام بدون أجور الصياغة.</p>
         </div>
-        @if ($delayed)<a href="{{ route('pricing') }}" class="text-xs font-semibold text-gold-600">⏱ متأخر 15 دقيقة — اللحظي في برو</a>@endif
+        @if ($delayed)<a href="{{ route('pricing') }}" class="text-xs font-semibold text-accent-600">⏱ متأخر 15 دقيقة — اللحظي في برو</a>@endif
     </div>
 
     <div class="grid gap-4 grid-cols-2 lg:grid-cols-4">
@@ -15,17 +15,17 @@
 
     <div class="grid gap-5 lg:grid-cols-5 mt-5">
         <div class="lg:col-span-3 card overflow-hidden">
-            <div data-price-chart data-code="gold21" data-range="30d" data-color="#c99a2e" class="card-pad">
+            <div data-price-chart data-code="gold21" data-range="30d" data-color="#2563eb" class="card-pad">
                 <div class="flex justify-between items-center mb-3">
                     <h2 class="section-title">مثقال عيار 21</h2>
                     <div class="flex gap-1 text-sm">
                         @foreach (\App\Services\Pricing\PriceService::RANGES as $key => $r)
-                            <button data-range="{{ $key }}" class="nav-link [&.active]:bg-gold-500 [&.active]:text-[#1b1405]">{{ $r['label'] }}</button>
+                            <button data-range="{{ $key }}" class="nav-link [&.active]:bg-accent-500 [&.active]:text-white">{{ $r['label'] }}</button>
                         @endforeach
                     </div>
                 </div>
                 <div class="relative h-64"><canvas></canvas>
-                    <div data-chart-lock class="hidden absolute inset-0 grid place-items-center"><a href="{{ route('pricing') }}" class="btn btn-gold">💎 التاريخ الكامل في برو</a></div>
+                    <div data-chart-lock class="hidden absolute inset-0 grid place-items-center"><a href="{{ route('pricing') }}" class="btn btn-accent">💎 التاريخ الكامل في برو</a></div>
                 </div>
             </div>
         </div>
@@ -71,7 +71,7 @@
             </form>
 
             @if ($check)
-                @php($tone = ['good' => 'var(--up)', 'warn' => '#ca8a04', 'bad' => 'var(--down)'][$check['tone']])
+                @php($tone = ['good' => 'var(--up)', 'warn' => '#64748b', 'bad' => 'var(--down)'][$check['tone']])
                 <div class="mt-5 rounded-xl p-4" style="border: 2px solid {{ $tone }}; background: color-mix(in srgb, {{ $tone }} 8%, transparent)">
                     <div class="text-lg font-bold" style="color: {{ $tone }}">{{ $check['verdict'] }}</div>
                     <div class="grid grid-cols-2 gap-2 text-sm mt-3">

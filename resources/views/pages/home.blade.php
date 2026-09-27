@@ -26,7 +26,7 @@
                             <span class="badge badge-{{ $usd['snapshot']->confidence }}">{{ $usd['snapshot']->confidenceLabel() }} · {{ $usd['snapshot']->sample_count }} قراءات</span>
                             <span class="text-muted">آخر تحديث {{ $usd['snapshot']->computed_at->diffForHumans() }}</span>
                             @if ($delayed)
-                                <a href="{{ route('pricing') }}" class="text-xs font-semibold text-gold-600 hover:underline">⏱ متأخر 15 دقيقة — اللحظي في برو</a>
+                                <a href="{{ route('pricing') }}" class="text-xs font-semibold text-accent-600 hover:underline">⏱ متأخر 15 دقيقة — اللحظي في برو</a>
                             @else
                                 <span class="text-xs font-semibold text-up">● مباشر</span>
                             @endif
@@ -59,7 +59,7 @@
                         <div class="card card-pad text-center shadow-lg">
                             <div class="font-bold mb-1">💎 التاريخ الكامل للمشتركين</div>
                             <div class="text-sm text-muted mb-3">المجاني يعرض آخر 30 يوماً</div>
-                            <a href="{{ route('pricing') }}" class="btn btn-gold">اشترك في برو</a>
+                            <a href="{{ route('pricing') }}" class="btn btn-accent">اشترك في برو</a>
                         </div>
                     </div>
                 </div>
@@ -76,7 +76,7 @@
                     </div>
                     <div class="num text-2xl font-bold">{{ money($cbi['snapshot']->mid) }}</div>
                     <div class="mt-3 text-sm">الفجوة مع السوق الموازي: <b class="num text-down">{{ pct($gap, 1) }}</b></div>
-                    <div class="h-2 rounded-full surface-2 mt-2 overflow-hidden"><div class="h-full bg-gold-500" style="width: {{ min(100, $gap * 5) }}%"></div></div>
+                    <div class="h-2 rounded-full surface-2 mt-2 overflow-hidden"><div class="h-full bg-accent-500" style="width: {{ min(100, $gap * 5) }}%"></div></div>
                 </div>
             @endif
 
@@ -92,7 +92,7 @@
                     @foreach ($fear['components'] as $c)
                         <div class="flex items-center gap-2">
                             <span class="w-28 text-muted">{{ $c['label'] }}</span>
-                            <div class="flex-1 h-1.5 rounded-full surface-2 overflow-hidden"><div class="h-full rounded-full" style="width: {{ $c['value'] }}%; background: {{ $c['value'] > 60 ? 'var(--down)' : ($c['value'] < 40 ? 'var(--up)' : '#ca8a04') }}"></div></div>
+                            <div class="flex-1 h-1.5 rounded-full surface-2 overflow-hidden"><div class="h-full rounded-full" style="width: {{ $c['value'] }}%; background: {{ $c['value'] > 60 ? 'var(--down)' : ($c['value'] < 40 ? 'var(--up)' : '#64748b') }}"></div></div>
                             <span class="num w-6 text-left">{{ $c['value'] }}</span>
                         </div>
                     @endforeach
@@ -233,7 +233,7 @@
                         <span class="text-xl {{ $item->impactClass() }}">{{ $item->impactIcon() }}</span>
                         <div>
                             <div class="font-semibold leading-7">{{ $item->title }}</div>
-                            <div class="text-xs text-muted">{{ $item->impactLabel() }} · {{ $item->published_at->diffForHumans() }} @if ($item->is_demo)· <span class="text-gold-600">خبر تجريبي</span>@endif</div>
+                            <div class="text-xs text-muted">{{ $item->impactLabel() }} · {{ $item->published_at->diffForHumans() }} @if ($item->is_demo)· <span class="text-accent-600">خبر تجريبي</span>@endif</div>
                         </div>
                     </div>
                 @endforeach

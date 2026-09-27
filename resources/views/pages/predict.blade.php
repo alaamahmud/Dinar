@@ -1,7 +1,7 @@
 <x-layouts.app title="مسابقة التوقع">
     <div class="grid gap-5 lg:grid-cols-3">
         <div class="lg:col-span-2 flex flex-col gap-5">
-            <div class="card card-pad" style="background: linear-gradient(135deg, color-mix(in srgb, var(--color-gold-400) 16%, var(--surface)), var(--surface))">
+            <div class="card card-pad" style="background: linear-gradient(135deg, color-mix(in srgb, var(--color-accent-400) 16%, var(--surface)), var(--surface))">
                 <h1 class="text-2xl font-bold">🎯 مسابقة التوقع اليومية</h1>
                 <p class="text-muted mt-2 leading-7">كم سيكون سعر إغلاق 100 دولار في بورصة الكفاح يوم <b>{{ $tomorrow->translatedFormat('l j F') }}</b>؟ مجانية بالكامل — بالنقاط فقط، بلا أي مبالغ مالية.</p>
                 <div class="grid sm:grid-cols-3 gap-3 mt-4 text-center">
@@ -13,10 +13,10 @@
                     <form method="POST" action="{{ route('predict') }}" class="flex gap-2 mt-5">
                         @csrf
                         <input name="predicted" type="number" class="input num text-lg" placeholder="مثال: {{ $current ? round($current->mid, -1) : 145000 }}" value="{{ $myTomorrow?->predicted ? round($myTomorrow->predicted) : '' }}" required>
-                        <button class="btn btn-gold shrink-0">{{ $myTomorrow ? 'تعديل توقعي' : 'سجّل توقعي' }}</button>
+                        <button class="btn btn-accent shrink-0">{{ $myTomorrow ? 'تعديل توقعي' : 'سجّل توقعي' }}</button>
                     </form>
                 @else
-                    <a href="{{ route('login') }}" class="btn btn-gold mt-5">سجّل الدخول للمشاركة</a>
+                    <a href="{{ route('login') }}" class="btn btn-accent mt-5">سجّل الدخول للمشاركة</a>
                 @endauth
                 <p class="text-xs text-muted mt-3">النقاط = 100 − (نسبة الخطأ × 100). التوقع المطابق تماماً = 100 نقطة، والخطأ 1% = صفر.</p>
             </div>

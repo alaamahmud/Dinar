@@ -13,7 +13,7 @@
             <div class="text-muted text-lg mt-1">أسعار اليوم · {{ now()->translatedFormat('l j F') }}</div>
         </div>
         <div class="text-left">
-            <div class="num text-5xl font-bold text-gold-400" data-live-clock>{{ now()->format('H:i:s') }}</div>
+            <div class="num text-5xl font-bold text-accent-400" data-live-clock>{{ now()->format('H:i:s') }}</div>
             <div class="text-muted">يتحدث تلقائياً</div>
         </div>
     </div>
@@ -34,7 +34,7 @@
     <div class="grid grid-cols-3 gap-6 mb-6">
         @foreach (['gold24' => 'ذهب عيار 24', 'gold21' => 'ذهب عيار 21', 'gold18' => 'ذهب عيار 18'] as $code => $label)
             @if ($quotes[$code])
-                <div class="card p-6 text-center" style="border-color: #c99a2e66"><div class="text-xl text-gold-400">🥇 {{ $label }} (مثقال)</div><div class="num text-5xl font-bold mt-2" data-live="{{ $code }}">{{ money($quotes[$code]['snapshot']->mid) }}</div></div>
+                <div class="card p-6 text-center" style="border-color: #2563eb66"><div class="text-xl text-accent-400">🥇 {{ $label }} (مثقال)</div><div class="num text-5xl font-bold mt-2" data-live="{{ $code }}">{{ money($quotes[$code]['snapshot']->mid) }}</div></div>
             @endif
         @endforeach
     </div>
