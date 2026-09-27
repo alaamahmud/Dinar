@@ -41,12 +41,14 @@ class ReferenceSeeder extends Seeder
         $cities = [
             ['baghdad-kifah', 'بغداد', 'بورصة الكفاح', 33.3406, 44.4009, true],
             ['baghdad-harthiya', 'بغداد', 'بورصة الحارثية', 33.3152, 44.3661, false],
+            ['baghdad-samawal', 'بغداد', 'سوق السموأل', null, null, false],
             ['erbil', 'أربيل', 'سوق أربيل', 36.1911, 44.0092, false],
             ['sulaymaniyah', 'السليمانية', 'سوق السليمانية', 35.5613, 45.4309, false],
             ['basra', 'البصرة', 'سوق البصرة', 30.5085, 47.7804, false],
             ['najaf', 'النجف', 'سوق النجف', 32.0259, 44.3462, false],
             ['karbala', 'كربلاء', 'سوق كربلاء', 32.6160, 44.0249, false],
             ['mosul', 'الموصل', 'سوق الموصل', 36.3350, 43.1189, false],
+            ['duhok', 'دهوك', 'سوق دهوك', 36.8669, 42.9503, false],
         ];
         foreach ($cities as $i => [$slug, $name, $market, $lat, $lng, $primary]) {
             City::updateOrCreate(['slug' => $slug], [

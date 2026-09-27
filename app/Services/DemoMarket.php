@@ -19,12 +19,14 @@ class DemoMarket
     public const CITY_OFFSETS = [
         'baghdad-kifah' => 0,
         'baghdad-harthiya' => 100,
+        'baghdad-samawal' => 50,
         'erbil' => 250,
         'sulaymaniyah' => 350,
         'basra' => 400,
         'najaf' => 150,
         'karbala' => 200,
         'mosul' => 300,
+        'duhok' => 400,
     ];
 
     public function __construct(private readonly PriceService $prices) {}

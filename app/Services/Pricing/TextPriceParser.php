@@ -9,27 +9,39 @@ namespace App\Services\Pricing;
  *   "بورصة الكفاح الآن: 145,250"
  *   "أربيل بيع ١٤٥٥٠٠ شراء ١٤٥٠٠٠"
  *   "الدولار الأبيض 144.750"
+ *   "🔷 كفاح ⏎ • مطلوب: 1555.50 ⏎ • معروض: 1556.00"  (صيغة قناة بورصة الكفاح)
  */
 class TextPriceParser
 {
     /** كلمات مفتاحية => slug المدينة */
+    /**
+     * كلمات مفتاحية => slug المدينة. تُكتب بلا «ال» لتطابق «كفاح» و«الكفاح» معاً،
+     * والأخص يأتي قبل الأعم (الكفاح والحارثية قبل بغداد).
+     */
     public const CITY_KEYWORDS = [
-        'الكفاح' => 'baghdad-kifah',
-        'الحارثية' => 'baghdad-harthiya',
-        'الحارثيه' => 'baghdad-harthiya',
+        'كفاح' => 'baghdad-kifah',
+        'حارثية' => 'baghdad-harthiya',
+        'حارثيه' => 'baghdad-harthiya',
+        'سموأل' => 'baghdad-samawal',
+        'سموال' => 'baghdad-samawal',
         'بغداد' => 'baghdad-kifah',
         'أربيل' => 'erbil',
         'اربيل' => 'erbil',
-        'البصرة' => 'basra',
-        'البصره' => 'basra',
-        'النجف' => 'najaf',
-        'الموصل' => 'mosul',
+        'سليمانية' => 'sulaymaniyah',
+        'سليمانيه' => 'sulaymaniyah',
+        'دهوك' => 'duhok',
+        'بصرة' => 'basra',
+        'بصره' => 'basra',
+        'نجف' => 'najaf',
+        'موصل' => 'mosul',
         'كربلاء' => 'karbala',
-        'السليمانية' => 'sulaymaniyah',
-        'السليمانيه' => 'sulaymaniyah',
     ];
 
-    public const CONTEXT_WORDS = ['دولار', 'الدولار', '$', 'بورصة', 'بورصه', 'الصرف', 'صرف', 'البورصة', 'سعر'];
+    public const CONTEXT_WORDS = ['دولار', '$', 'بورص', 'صرف', 'سعر', 'مطلوب', 'معروض'];
+
+    public const BUY_WORDS = ['شراء', 'مطلوب'];
+
+    public const SELL_WORDS = ['بيع', 'معروض'];
 
     public function __construct(
         private readonly int $min = 100000,
@@ -77,7 +89,39 @@ class TextPriceParser
             ];
         }
 
-        return $results;
+        return $this->mergeSides($results);
+    }
+
+    /**
+     * يدمج سطرين متتاليين أحدهما شراء فقط والآخر بيع فقط لنفس المدينة
+     * (مثل «مطلوب: …» ثم «معروض: …») في قراءة واحدة.
+     *
+     * @param  list<array{city: ?string, buy: ?float, sell: ?float, note_type: ?string}>  $results
+     * @return list<array{city: ?string, buy: ?float, sell: ?float, note_type: ?string}>
+     */
+    private function mergeSides(array $results): array
+    {
+        $merged = [];
+        foreach ($results as $row) {
+            $last = $merged === [] ? null : $merged[count($merged) - 1];
+            $complements = $last !== null
+                && $last['city'] === $row['city']
+                && $last['note_type'] === $row['note_type']
+                && (($last['buy'] === null && $row['sell'] === null) || ($last['sell'] === null && $row['buy'] === null));
+
+            if ($complements) {
+                $merged[count($merged) - 1] = [
+                    'city' => $row['city'],
+                    'buy' => $last['buy'] ?? $row['buy'],
+                    'sell' => $last['sell'] ?? $row['sell'],
+                    'note_type' => $row['note_type'],
+                ];
+            } else {
+                $merged[] = $row;
+            }
+        }
+
+        return $merged;
     }
 
     public function normalize(string $text): string
@@ -95,7 +139,7 @@ class TextPriceParser
 
     private function hasContext(string $text): bool
     {
-        foreach (self::CONTEXT_WORDS as $word) {
+        foreach ([...self::CONTEXT_WORDS, ...array_keys(self::CITY_KEYWORDS)] as $word) {
             if (mb_strpos($text, $word) !== false) {
                 return true;
             }
@@ -133,11 +177,14 @@ class TextPriceParser
     public function extractNumbers(string $line): array
     {
         // (?<!\d) و (?!\d) تمنع التقاط أجزاء من أرقام الهواتف الطويلة
-        preg_match_all('/(?<![\d,.])(?:\d{1,3}(?:[,.]\d{3})+|\d{4,6})(?![\d])/u', $line, $matches, PREG_OFFSET_CAPTURE);
+        // الصيغة الأولى: سعر الدولار الواحد بكسور (1555.50) — منزلتان عشريتان كحد أقصى
+        preg_match_all('/(?<![\d,.])(?:\d{4}\.\d{1,2}|\d{1,3}(?:[,.]\d{3})+|\d{4,6})(?![\d])/u', $line, $matches, PREG_OFFSET_CAPTURE);
 
         $numbers = [];
         foreach ($matches[0] as [$raw, $offset]) {
-            $value = (float) str_replace([',', '.'], '', $raw);
+            $value = preg_match('/^\d{4}\.\d{1,2}$/', $raw)
+                ? (float) $raw
+                : (float) str_replace([',', '.'], '', $raw);
 
             // تجاهل ما يبدو كسنة (مثل 2026)
             if (strlen($raw) === 4 && $value >= 1900 && $value <= 2100) {
@@ -163,8 +210,8 @@ class TextPriceParser
      */
     private function detectSides(string $line, array $numbers): array
     {
-        $buyPos = $this->wordPos($line, ['شراء', 'الشراء']);
-        $sellPos = $this->wordPos($line, ['بيع', 'البيع']);
+        $buyPos = $this->wordPos($line, self::BUY_WORDS);
+        $sellPos = $this->wordPos($line, self::SELL_WORDS);
 
         if (count($numbers) >= 2 && $buyPos !== null && $sellPos !== null) {
             $buy = $this->nearest($numbers, $buyPos);

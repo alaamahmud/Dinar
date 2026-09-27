@@ -55,4 +55,34 @@ class TextPriceParserTest extends TestCase
         $this->assertSame([], $this->parser->parse('مبروك للفائزين 145000'));
         $this->assertSame([], $this->parser->parse('سعر الدولار اليوم 2026 للاستفسار 07701452000'));
     }
+
+    /**
+     * منشورات حقيقية من قناة «بورصة الكفاح» (t.me/borsat_alkfah) كما تظهر في التطبيق.
+     */
+    public function test_parses_kifah_channel_format(): void
+    {
+        $cases = [
+            "🔷 كفاح\n• مطلوب: 1555.50\n• معروض: 1555.50" => ['baghdad-kifah', 155550.0, 155550.0],
+            "🔷 حارثية\n• مطلوب: 1555.00\n• معروض: 1555.50" => ['baghdad-harthiya', 155500.0, 155550.0],
+            "🔷 سموأل\n• مطلوب: 1555.50\n• معروض: 1556.00" => ['baghdad-samawal', 155550.0, 155600.0],
+            "🔷 البصرة\n• مطلوب: 1555.00\n• معروض: 1556.00" => ['basra', 155500.0, 155600.0],
+            "🔷 أربيل\n• مطلوب: 1555.50\n• معروض: 1556.00" => ['erbil', 155550.0, 155600.0],
+            "🔷 سليمانية\n• مطلوب: 1558.50\n• معروض: 1558.50" => ['sulaymaniyah', 155850.0, 155850.0],
+            "🔷 دهوك\n• مطلوب: 1559.00\n• معروض: 1559.50" => ['duhok', 155900.0, 155950.0],
+        ];
+
+        foreach ($cases as $text => [$city, $buy, $sell]) {
+            $result = $this->parser->parse($text);
+
+            $this->assertCount(1, $result, $text);
+            $this->assertSame($city, $result[0]['city'], $text);
+            $this->assertSame($buy, $result[0]['buy'], $text);
+            $this->assertSame($sell, $result[0]['sell'], $text);
+        }
+    }
+
+    public function test_thousands_with_dot_are_not_treated_as_decimals(): void
+    {
+        $this->assertSame(145750.0, $this->parser->parse('الكفاح 145.750')[0]['buy']);
+    }
 }
