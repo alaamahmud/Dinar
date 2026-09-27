@@ -9,9 +9,9 @@ class NewsItem extends Model
     protected $guarded = [];
 
     public const IMPACTS = [
-        'up' => ['label' => 'قد يرفع الدولار', 'icon' => '🔺'],
-        'down' => ['label' => 'قد يخفض الدولار', 'icon' => '🔻'],
-        'neutral' => ['label' => 'أثر محدود', 'icon' => '⏺'],
+        'up' => ['label' => 'قد يرفع الدولار', 'icon' => '▲', 'class' => 'text-down'],
+        'down' => ['label' => 'قد يخفض الدولار', 'icon' => '▼', 'class' => 'text-up'],
+        'neutral' => ['label' => 'أثر محدود', 'icon' => '●', 'class' => 'text-muted'],
     ];
 
     protected function casts(): array
@@ -30,5 +30,10 @@ class NewsItem extends Model
     public function impactIcon(): string
     {
         return self::IMPACTS[$this->impact]['icon'] ?? '';
+    }
+
+    public function impactClass(): string
+    {
+        return self::IMPACTS[$this->impact]['class'] ?? '';
     }
 }

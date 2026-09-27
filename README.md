@@ -1,58 +1,100 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🧭 نبض الدينار
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+منصة عراقية لأسعار **الدولار والذهب لحظياً** — ومعها أدوات مالية يحتاجها المواطن يومياً.
+مبنية بـ **Laravel 13** وواجهة عربية كاملة (RTL) مع وضع ليلي، وتعمل على الجوال كتطبيق (PWA).
 
-## About Laravel
+> ⚠️ عند التثبيت تعمل المنصة في **الوضع التجريبي**: كل الأسعار والأخبار **محاكاة** لغرض العرض.
+> أوقفه من لوحة الإدارة بعد ربط المصادر الحقيقية.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## ✨ الميزات
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### الأسعار
+- الدولار الموازي في **8 أسواق** (الكفاح، الحارثية، أربيل، السليمانية، البصرة، النجف، كربلاء، الموصل)، مع الفرق بينها.
+- السعر الرسمي للبنك المركزي والفجوة مع السوق.
+- **سعر الدولار حسب نوع الورقة**: فئة 100 الزرقاء، الأبيض القديم، الفئات الصغيرة.
+- الذهب عيار 24 و21 و18 بالمثقال والغرام، والفضة، وسعر بيع الكسر.
+- التومان، الليرة التركية، الريال السعودي، الدينار الأردني، ومؤشر USDT.
+- افتتاح وإغلاق وأعلى وأدنى سعر لليوم، ورسم بياني (يوم/أسبوع/شهر/سنة/الكل).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### كيف يُحسب السعر تلقائياً؟
+1. **مصادر متعددة**: قنوات تيليجرام العامة (تُقرأ من صفحة `t.me/s/القناة` بلا حساب)، سعر الذهب العالمي (GoldAPI)، إعلانات USDT في P2P، السعر الرسمي، وبلاغات المستخدمين.
+2. **محلل نصوص عربي** يستخرج الأسعار من المنشورات (يفهم الأرقام الهندية، «بيع/شراء»، المدن، الدولار الأبيض…).
+3. **استبعاد الشاذ** (أبعد من 1.5% عن الوسيط) ثم **الوسيط الموزون** (وزن المصدر × ثقة المبلّغ × حداثة القراءة).
+4. **مستوى ثقة** لكل سعر (عالية/متوسطة/غير مؤكد).
+5. الذهب والريال والدينار الأردني تُشتق من سعر الدولار الموازي.
 
-## Learning Laravel
+### الذكاء والتحليل (مجاني — بلا ذكاء اصطناعي)
+- ⚡ **كاشف الحركات المفاجئة** (مقارنة بالتذبذب المعتاد).
+- 🔮 **توقع اتجاه الغد** (انحدار خطي + زخم + متوسطات متحركة) مع **دقة النموذج معروضة بشفافية** (اختبار رجعي).
+- 🌡️ **مؤشر القلق على الدينار** (0–100).
+- 🏅 **ترتيب المصادر حسب الدقة** و**ثقة المبلّغين**.
+- 📡 **رادار الأخبار**: تلخيص وتقدير الأثر بالكلمات المفتاحية، ويمكن تفعيل **Claude** للتحليل (اختياري، بضعة دولارات شهرياً).
+- 🏦 مبيعات نافذة بيع العملة مقابل سعر السوق.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### المجتمع
+- 📣 بلاغات الأسعار (مع رفض الأرقام البعيدة عن السوق) ونقاط وثقة.
+- 🎯 **مسابقة التوقع اليومية** بالنقاط (بلا أموال) + «توقع الجمهور» ودقته.
+- 📍 دليل الصرافين ومحلات الذهب مع خريطة وتقييمات وظهور مميز.
+- 🛒 **سلة المواطن**: مؤشر تضخم شعبي من أسعار يبلّغ عنها الناس.
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### الحاسبات
+لو اشتريت… · راتبك الحقيقي · الزكاة · كلفة السيارة المستوردة · مقارنة الحوالات · ميزانية السفر · حاسبة التاجر · **هل أنصفك الصائغ؟**
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+### حسابي
+المحفظة (دولار/ذهب/نقد) · التنبيهات (موقع + تيليجرام) · التقرير الأسبوعي (طباعة PDF) · ربط بوت تيليجرام.
 
-## Agentic Development
+### الانتشار
+🖼️ صورة أسعار اليوم للحالة/الستوري · 🧩 ويدجت مجاني للمواقع · 🤖 بوت تيليجرام (`دولار`، `ذهب`) · تطبيق ويب قابل للتثبيت.
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+### الباقات
+| | مجاني | ⭐ برو (5,000 د.ع) | 💼 تاجر (25,000 د.ع) |
+|---|---|---|---|
+| الأسعار | تأخير 15 دقيقة | لحظي | لحظي |
+| التاريخ | 30 يوماً | كامل | كامل |
+| التنبيهات | 1 | 20 | غير محدود + الحركات المفاجئة |
+| التوقع، ملخص الأخبار، التقرير الأسبوعي | — | ✓ | ✓ |
+| فرص الفرق بين المحافظات، حاسبة التاجر، تصدير Excel، شاشة المحل، API | — | — | ✓ |
+
+الدفع يدوي (زين كاش / كي كارد / آسيا حوالة / FastPay): المستخدم يرسل رقم العملية ← المدير يفعّل من لوحة الإدارة.
+
+## 🚀 التشغيل
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+composer install && npm install
+cp .env.example .env && php artisan key:generate
+touch database/database.sqlite        # أو اضبط MySQL في .env
+php artisan migrate --seed
+npm run build
+php artisan serve                      # http://localhost:8000
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+أو افتح المستودع في **GitHub Codespaces** (Code ← Codespaces) وسيُجهَّز كل شيء تلقائياً.
 
-## Contributing
+**حسابات تجريبية** (كلمة المرور `password`): `admin@dinar.test` (مدير) · `pro@dinar.test` · `trader@dinar.test` · `free@dinar.test`
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### على الخادم
+- أضف مهمة cron واحدة لتشغيل الجدولة كل دقيقة:
+  `* * * * * cd /path && php artisan schedule:run >> /dev/null 2>&1`
+- ما تفعله الجدولة: `dinar:tick` كل دقيقة (جلب + حساب + تنبيهات)، `dinar:news` كل 15 دقيقة، `dinar:score` يومياً (تصحيح المسابقة)، `dinar:accuracy` يومياً (دقة المصادر).
+- للإنتاج: `APP_ENV=production` و`APP_DEBUG=false`، ثم من لوحة الإدارة أوقف **الوضع التجريبي** وفعّل المصادر الحقيقية.
 
-## Code of Conduct
+### المتغيرات الاختيارية (`.env`)
+| المتغير | الغرض |
+|---|---|
+| `GOLD_API_KEY` | سعر الذهب/الفضة العالمي من goldapi.io |
+| `ANTHROPIC_API_KEY`، `AI_MODEL` | تحليل الأخبار بـ Claude (يُفعّل من لوحة الإدارة) |
+| `TELEGRAM_BOT_TOKEN`، `TELEGRAM_WEBHOOK_SECRET` | البوت؛ عنوان الـ webhook: `/telegram/webhook/{السر}` |
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### واجهة API (باقة التاجر)
+```
+GET /api/v1/prices?token=YOUR_TOKEN
+```
 
-## Security Vulnerabilities
+## 🧪 الاختبارات
+```bash
+php artisan test
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## ⚖️ تنبيه
+الأسعار استرشادية وليست عرض بيع أو شراء، والتوقعات إحصائية وليست نصيحة مالية.
+احترم شروط استخدام أي مصدر بيانات قبل تفعيله.

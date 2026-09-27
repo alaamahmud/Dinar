@@ -39,7 +39,7 @@ function baseOptions(extra = {}) {
         },
         scales: {
             x: { grid: { display: false }, ticks: { color: css('--muted'), maxTicksLimit: 6, font: { family: 'IBM Plex Sans Arabic' } } },
-            y: { position: 'right', grid: { color: css('--border') }, ticks: { color: css('--muted'), callback: (v) => fmt(v), font: { family: 'IBM Plex Sans Arabic' } } },
+            y: { position: 'right', grid: { color: css('--border') }, ticks: { color: css('--muted'), callback: (v) => fmt(v, Math.abs(v) < 100 && v % 1 ? 1 : 0), font: { family: 'IBM Plex Sans Arabic' } } },
         },
         ...extra,
     };
@@ -107,7 +107,7 @@ function initStaticChart(el) {
     const opts = baseOptions();
     if (cfg.legend) opts.plugins.legend = { display: true, position: 'bottom', labels: { color: css('--muted'), font: { family: 'IBM Plex Sans Arabic' } } };
     if (cfg.y2) {
-        opts.scales.y2 = { position: 'left', grid: { display: false }, ticks: { color: css('--muted'), callback: (v) => fmt(v) } };
+        opts.scales.y2 = { position: 'left', beginAtZero: false, grid: { display: false }, ticks: { color: css('--muted'), callback: (v) => fmt(v, Math.abs(v) < 100 && v % 1 ? 1 : 0) } };
     }
     new Chart(el.querySelector('canvas'), { type: cfg.type || 'line', data: { labels: cfg.labels, datasets }, options: opts });
 }

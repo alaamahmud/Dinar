@@ -230,7 +230,7 @@
             <div class="space-y-4">
                 @foreach ($news as $item)
                     <div class="flex gap-3">
-                        <span class="text-xl">{{ $item->impactIcon() }}</span>
+                        <span class="text-xl {{ $item->impactClass() }}">{{ $item->impactIcon() }}</span>
                         <div>
                             <div class="font-semibold leading-7">{{ $item->title }}</div>
                             <div class="text-xs text-muted">{{ $item->impactLabel() }} · {{ $item->published_at->diffForHumans() }} @if ($item->is_demo)· <span class="text-gold-600">خبر تجريبي</span>@endif</div>

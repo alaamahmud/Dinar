@@ -35,7 +35,7 @@ $chartData2 = ["labels" => $closes->keys()->map(fn ($d) => substr($d, 5))->value
         <div class="card card-pad">
             <h2 class="section-title mb-3">أهم الأخبار المؤثرة</h2>
             @foreach ($news as $n)
-                <div class="py-2 border-b border-soft last:border-0 text-sm"><span>{{ $n->impactIcon() }}</span> <b>{{ $n->title }}</b><div class="text-muted text-xs mt-1">{{ $n->summary }}</div></div>
+                <div class="py-2 border-b border-soft last:border-0 text-sm"><span class="{{ $n->impactClass() }}">{{ $n->impactIcon() }}</span> <b>{{ $n->title }}</b><div class="text-muted text-xs mt-1">{{ $n->summary }}</div></div>
             @endforeach
         </div>
     </div>

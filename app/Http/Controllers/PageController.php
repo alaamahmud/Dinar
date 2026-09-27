@@ -162,7 +162,7 @@ class PageController extends Controller
     {
         return view('pages.share', [
             'quotes' => $this->quotes(['usd', 'usd_cbi', 'gold21', 'gold24'], $request->user()),
-            'cities' => $this->prices->cityBoard($request->user())->take(4),
+            'cities' => $this->prices->cityBoard($request->user())->take(5),
         ]);
     }
 

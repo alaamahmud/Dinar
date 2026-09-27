@@ -17,14 +17,17 @@ use App\Models\Setting;
 use App\Models\Source;
 use App\Models\SubscriptionRequest;
 use App\Models\User;
+use App\Notifications\PriceAlertNotification;
 use App\Services\Analytics\PredictionScorer;
 use App\Services\Analytics\SourceAccuracy;
 use App\Services\DemoMarket;
 use App\Services\News\RuleBasedAnalyzer;
 use App\Services\Pricing\GoldCalculator;
 use App\Services\Pricing\MarketPipeline;
+use App\Services\Pricing\Sources\CbiSource;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 /**
@@ -182,7 +185,7 @@ class DemoSeeder extends Seeder
     }
 
     /**
-     * @return \Illuminate\Support\Collection<int, User>
+     * @return Collection<int, User>
      */
     private function seedUsers()
     {
@@ -268,7 +271,7 @@ class DemoSeeder extends Seeder
         foreach ([50, 40, 30, 20, 10, 0] as $minutesAgo) {
             $at = now()->subMinutes($minutesAgo);
             $demo->tick($at);
-            app(\App\Services\Pricing\Sources\CbiSource::class)->fetch(Source::ofType('cbi'));
+            app(CbiSource::class)->fetch(Source::ofType('cbi'));
             $pipeline->aggregateAll($at);
         }
     }
@@ -434,7 +437,7 @@ class DemoSeeder extends Seeder
         Alert::create(['user_id' => $pro->id, 'instrument_id' => $gold21->id, 'condition' => 'above', 'threshold' => 700000]);
         Alert::create(['user_id' => $pro->id, 'instrument_id' => $usd->id, 'condition' => 'spike']);
 
-        $pro->notify(new \App\Notifications\PriceAlertNotification('ارتفع الدولار (السوق الموازي) إلى 146,250 (حدّك: 146,000)', 146250));
+        $pro->notify(new PriceAlertNotification('ارتفع الدولار (السوق الموازي) إلى 146,250 (حدّك: 146,000)', 146250));
 
         $free = User::where('email', 'free@dinar.test')->first();
         SubscriptionRequest::create(['user_id' => $free->id, 'plan' => 'pro', 'months' => 1, 'payment_method' => 'zaincash', 'reference' => 'ZC-58213']);

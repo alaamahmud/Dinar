@@ -6,9 +6,9 @@
         </div>
         <div class="flex gap-1 text-sm">
             <a href="{{ route('news') }}" class="nav-link {{ ! $impact ? 'active' : '' }}">الكل</a>
-            <a href="{{ route('news', ['impact' => 'up']) }}" class="nav-link {{ $impact === 'up' ? 'active' : '' }}">🔺 قد يرفع</a>
-            <a href="{{ route('news', ['impact' => 'down']) }}" class="nav-link {{ $impact === 'down' ? 'active' : '' }}">🔻 قد يخفض</a>
-            <a href="{{ route('news', ['impact' => 'neutral']) }}" class="nav-link {{ $impact === 'neutral' ? 'active' : '' }}">⏺ محدود</a>
+            <a href="{{ route('news', ['impact' => 'up']) }}" class="nav-link {{ $impact === 'up' ? 'active' : '' }}">▲ قد يرفع</a>
+            <a href="{{ route('news', ['impact' => 'down']) }}" class="nav-link {{ $impact === 'down' ? 'active' : '' }}">▼ قد يخفض</a>
+            <a href="{{ route('news', ['impact' => 'neutral']) }}" class="nav-link {{ $impact === 'neutral' ? 'active' : '' }}">● محدود</a>
         </div>
     </div>
 
@@ -20,7 +20,7 @@
     <div class="space-y-3">
         @forelse ($items as $item)
             <article class="card card-pad flex gap-4">
-                <div class="text-3xl">{{ $item->impactIcon() }}</div>
+                <div class="text-2xl {{ $item->impactClass() }}">{{ $item->impactIcon() }}</div>
                 <div class="flex-1">
                     <h2 class="font-bold leading-7">{{ $item->title }}</h2>
                     @if ($isPro)
