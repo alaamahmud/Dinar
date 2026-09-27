@@ -17,6 +17,9 @@
     --color-gold-400: #e2b54a;
     --color-gold-500: #c99a2e;
     --color-gold-600: #a67c1c;
+    --color-accent-500: #6d4fe0;
+    --color-accent-600: #5b3fd0;
+    --color-accent-700: #4a30b3;
 }
 
 @layer base {
@@ -61,8 +64,8 @@
     .btn { display: inline-flex; align-items: center; justify-content: center; gap: .4rem; border-radius: .75rem; padding: .6rem 1.1rem; font-weight: 600; font-size: .9rem; transition: all .15s; cursor: pointer; }
     .btn-primary { background: var(--color-brand-600); color: white; }
     .btn-primary:hover { background: var(--color-brand-700); }
-    .btn-gold { background: var(--color-gold-500); color: #1b1405; }
-    .btn-gold:hover { background: var(--color-gold-400); }
+    .btn-gold { background: var(--color-accent-600); color: white; }
+    .btn-gold:hover { background: var(--color-accent-700); }
     .btn-ghost { background: var(--surface-2); color: var(--text); border: 1px solid var(--border); }
     .btn-ghost:hover { border-color: var(--color-brand-500); }
     .input { width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: .75rem; padding: .6rem .8rem; color: var(--text); }
