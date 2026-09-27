@@ -1,11 +1,23 @@
 {
     "name": "نبض الدينار",
-    "image": "mcr.microsoft.com/devcontainers/php:1-8.3-bookworm",
+    "image": "mcr.microsoft.com/devcontainers/php:1-8.4-bookworm",
     "features": {
-        "ghcr.io/devcontainers/features/node:1": { "version": "22" }
+        "ghcr.io/devcontainers/features/node:1": {
+            "version": "22"
+        }
     },
-    "forwardPorts": [8000],
-    "portsAttributes": { "8000": { "label": "نبض الدينار", "onAutoForward": "openPreview" } },
-    "postCreateCommand": "composer install && npm install && cp -n .env.example .env && php artisan key:generate && touch database/database.sqlite && php artisan migrate --seed --force && npm run build",
-    "postAttachCommand": "php artisan serve --host=0.0.0.0 --port=8000"
+    "forwardPorts": [
+        8000
+    ],
+    "portsAttributes": {
+        "8000": {
+            "label": "نبض الدينار",
+            "onAutoForward": "openPreview"
+        }
+    },
+    "postCreateCommand": "bash .devcontainer/setup.sh",
+    "postAttachCommand": "php artisan serve --host=0.0.0.0 --port=8000",
+    "containerEnv": {
+        "XDEBUG_MODE": "off"
+    }
 }

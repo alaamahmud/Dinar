@@ -1,6 +1,6 @@
 # نبض الدينار (Dinar Pulse)
 
-Laravel 13 app (PHP 8.3+, Blade + Tailwind v4 + Chart.js, RTL Arabic UI) showing Iraqi dinar exchange rates and gold prices.
+Laravel 13 app (PHP 8.4+, Blade + Tailwind v4 + Chart.js, RTL Arabic UI) showing Iraqi dinar exchange rates and gold prices.
 
 ## Commands
 - Setup: `composer install && npm install && cp .env.example .env && php artisan key:generate && php artisan migrate --seed && npm run build`
