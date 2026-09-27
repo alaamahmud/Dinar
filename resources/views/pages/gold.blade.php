@@ -20,7 +20,7 @@
                     <h2 class="section-title">مثقال عيار 21</h2>
                     <div class="flex gap-1 text-sm">
                         @foreach (\App\Services\Pricing\PriceService::RANGES as $key => $r)
-                            <button data-range="{{ $key }}" class="nav-link [&.active]:bg-gold-500 [&.active]:text-[#1b1405]">{{ $r['label'] }}</button>
+                            <button data-range="{{ $key }}" class="nav-link [&.active]:bg-accent-600 [&.active]:text-white">{{ $r['label'] }}</button>
                         @endforeach
                     </div>
                 </div>
