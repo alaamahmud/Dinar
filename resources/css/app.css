@@ -1,0 +1,86 @@
+@import 'tailwindcss';
+@import 'leaflet/dist/leaflet.css';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --font-sans: 'IBM Plex Sans Arabic', ui-sans-serif, system-ui, sans-serif;
+    --color-brand-50: #ecfdf8;
+    --color-brand-100: #d1faec;
+    --color-brand-500: #0f9f7f;
+    --color-brand-600: #0b7f66;
+    --color-brand-700: #0a6653;
+    --color-brand-900: #063d33;
+    --color-gold-400: #e2b54a;
+    --color-gold-500: #c99a2e;
+    --color-gold-600: #a67c1c;
+}
+
+@layer base {
+    :root {
+        --bg: #f6f7f5;
+        --surface: #ffffff;
+        --surface-2: #f1f3f0;
+        --border: #e3e6e1;
+        --text: #16211d;
+        --muted: #66736d;
+        --up: #0f8a5f;
+        --down: #d33a2c;
+    }
+    .dark {
+        --bg: #0c1311;
+        --surface: #131c19;
+        --surface-2: #1a2521;
+        --border: #25332e;
+        --text: #e8eeeb;
+        --muted: #8fa19a;
+        --up: #34c48b;
+        --down: #f06a5b;
+    }
+    html { direction: rtl; }
+    body {
+        background: var(--bg);
+        color: var(--text);
+        font-feature-settings: 'tnum';
+    }
+    .num { font-variant-numeric: tabular-nums; direction: ltr; unicode-bidi: isolate; display: inline-block; }
+    td.num, th.num { display: table-cell; direction: ltr; text-align: right; }
+}
+
+@layer components {
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; }
+    .card-pad { padding: 1.25rem; }
+    .surface-2 { background: var(--surface-2); }
+    .border-soft { border-color: var(--border); }
+    .text-muted { color: var(--muted); }
+    .text-up { color: var(--up); }
+    .text-down { color: var(--down); }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: .4rem; border-radius: .75rem; padding: .6rem 1.1rem; font-weight: 600; font-size: .9rem; transition: all .15s; cursor: pointer; }
+    .btn-primary { background: var(--color-brand-600); color: white; }
+    .btn-primary:hover { background: var(--color-brand-700); }
+    .btn-gold { background: var(--color-gold-500); color: #1b1405; }
+    .btn-gold:hover { background: var(--color-gold-400); }
+    .btn-ghost { background: var(--surface-2); color: var(--text); border: 1px solid var(--border); }
+    .btn-ghost:hover { border-color: var(--color-brand-500); }
+    .input { width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: .75rem; padding: .6rem .8rem; color: var(--text); }
+    .input:focus { outline: 2px solid var(--color-brand-500); outline-offset: 0; border-color: transparent; }
+    .label { display: block; font-size: .85rem; font-weight: 600; margin-bottom: .35rem; color: var(--muted); }
+    .badge { display: inline-flex; align-items: center; gap: .25rem; font-size: .72rem; font-weight: 600; padding: .15rem .55rem; border-radius: 999px; }
+    .badge-high { background: color-mix(in srgb, var(--up) 15%, transparent); color: var(--up); }
+    .badge-medium { background: color-mix(in srgb, #ca8a04 18%, transparent); color: #b7791f; }
+    .badge-low { background: color-mix(in srgb, var(--down) 15%, transparent); color: var(--down); }
+    .badge-pro { background: linear-gradient(135deg, var(--color-gold-400), var(--color-gold-600)); color: #1b1405; }
+    .nav-link { padding: .45rem .8rem; border-radius: .6rem; font-size: .9rem; font-weight: 500; color: var(--muted); white-space: nowrap; }
+    .nav-link:hover, .nav-link.active { color: var(--text); background: var(--surface-2); }
+    .section-title { font-size: 1.15rem; font-weight: 700; }
+    .locked-blur { filter: blur(6px); pointer-events: none; user-select: none; }
+    .table { width: 100%; font-size: .9rem; }
+    .table th { text-align: start; font-weight: 600; color: var(--muted); font-size: .8rem; padding: .6rem .75rem; border-bottom: 1px solid var(--border); }
+    .table td { padding: .7rem .75rem; border-bottom: 1px solid var(--border); }
+    .table tr:last-child td { border-bottom: 0; }
+    .flash-pulse { animation: flash 1.2s ease-out; }
+    @keyframes flash { from { background: color-mix(in srgb, var(--color-gold-400) 35%, transparent); } to { background: transparent; } }
+}

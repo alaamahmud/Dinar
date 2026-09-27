@@ -1,0 +1,14 @@
+{
+    "name": "نبض الدينار",
+    "short_name": "نبض الدينار",
+    "description": "سعر الدولار والذهب في العراق لحظياً",
+    "lang": "ar",
+    "dir": "rtl",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0c1311",
+    "theme_color": "#0b7f66",
+    "icons": [
+        { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+    ]
+}
