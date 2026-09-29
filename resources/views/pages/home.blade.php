@@ -137,14 +137,14 @@
             @else
                 <div class="text-muted text-sm">كن أول من يتوقع سعر إغلاق الغد!</div>
             @endif
-            <div class="mt-4 p-3 rounded-xl surface-2 text-sm">🏆 مسابقة يومية مجانية بالنقاط — الأدق يحصل على شارة «محلل الشهر».</div>
+            <div class="mt-4 p-3 rounded-xl surface-2 text-sm">🎯 مسابقة يومية مجانية بالنقاط — الأدق يحصل على شارة «محلل الشهر».</div>
         </div>
     </section>
 
     {{-- الذهب --}}
     <section class="mt-8">
         <div class="flex justify-between items-center mb-3">
-            <h2 class="section-title">🥇 الذهب بالمثقال</h2>
+            <h2 class="section-title">⚖️ الذهب بالمثقال</h2>
             <a href="{{ route('gold') }}" class="text-sm text-brand-600 font-semibold hover:underline">هل أنصفك الصائغ؟ ←</a>
         </div>
         <div class="grid gap-4 grid-cols-2 lg:grid-cols-4">
@@ -192,7 +192,7 @@
                 @if ($usd)
                     <div class="flex justify-between items-center p-3 rounded-xl surface-2"><span>🔵 فئة 100 الزرقاء</span><span class="num font-bold">{{ money($usd['snapshot']->mid) }}</span></div>
                 @endif
-                @foreach (['white' => '⚪ الدولار الأبيض (القديم)', 'small' => '🪙 الفئات الصغيرة'] as $type => $label)
+                @foreach (['white' => '⚪ الدولار الأبيض (القديم)', 'small' => '🔹 الفئات الصغيرة'] as $type => $label)
                     @if ($notes[$type] && $usd)
                         @php($d = ($notes[$type]['snapshot']->mid - $usd['snapshot']->mid) / $usd['snapshot']->mid * 100)
                         <div class="flex justify-between items-center p-3 rounded-xl surface-2">

@@ -7,7 +7,7 @@
 
     <div class="grid gap-5 lg:grid-cols-3">
         <div class="lg:col-span-2 card overflow-hidden">
-            <div class="card-pad pb-2"><h2 class="section-title">🏅 ترتيب المصادر حسب الدقة</h2></div>
+            <div class="card-pad pb-2"><h2 class="section-title">📊 ترتيب المصادر حسب الدقة</h2></div>
             <div class="overflow-x-auto">
             <table class="table">
                 <thead><tr><th>#</th><th>المصدر</th><th>النوع</th><th>متوسط الانحراف</th><th>القراءات</th><th>الحالة</th></tr></thead>

@@ -87,7 +87,7 @@ class TelegramBot
 
     public function goldMessage(): string
     {
-        $lines = ["🥇 <b>سعر مثقال الذهب</b>\n"];
+        $lines = ["⚖️ <b>سعر مثقال الذهب</b>\n"];
         foreach (['gold24' => 'عيار 24', 'gold21' => 'عيار 21', 'gold18' => 'عيار 18'] as $code => $label) {
             $snap = $this->prices->latest($code);
             if ($snap) {

@@ -36,17 +36,17 @@
 
         <div class="flex flex-col gap-5">
             <div class="card card-pad">
-                <h2 class="section-title mb-3">🏅 محللو هذا الشهر</h2>
+                <h2 class="section-title mb-3">📊 محللو هذا الشهر</h2>
                 @foreach ($monthly as $i => $row)
                     <div class="flex items-center gap-3 py-2 {{ ! $loop->last ? 'border-b border-soft' : '' }}">
-                        <span class="text-xl w-7">{{ ['🥇', '🥈', '🥉'][$i] ?? '⭐' }}</span>
+                        <span class="w-7 h-7 rounded-full grid place-items-center text-sm font-bold {{ $i === 0 ? 'bg-brand-600 text-white' : 'surface-2' }}">{{ $i + 1 }}</span>
                         <div class="flex-1"><div class="font-semibold">{{ $row['user']->name }}</div><div class="text-xs text-muted">{{ $row['count'] }} توقع · متوسط الخطأ <span class="num">{{ pct($row['avg_error'], 2, false) }}</span></div></div>
                         <span class="num font-bold">{{ $row['points'] }}</span>
                     </div>
                 @endforeach
             </div>
             <div class="card overflow-hidden">
-                <div class="card-pad pb-2"><h2 class="section-title">🏆 الترتيب العام</h2></div>
+                <div class="card-pad pb-2"><h2 class="section-title">🎯 الترتيب العام</h2></div>
                 <table class="table">
                     @foreach ($leaders as $i => $u)
                         <tr class="{{ auth()->id() === $u->id ? 'surface-2 font-bold' : '' }}"><td class="text-muted w-8">{{ $i + 1 }}</td><td>{{ $u->name }}</td><td class="num font-semibold">{{ money($u->points) }}</td></tr>

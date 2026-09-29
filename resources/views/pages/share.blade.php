@@ -39,7 +39,7 @@
                 </div>
 
                 <div style="margin-top:14px; background: rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.3); border-radius:18px; padding:14px 16px">
-                    <div style="font-size:13px; opacity:.9">🥇 الذهب (مثقال)</div>
+                    <div style="font-size:13px; opacity:.9">⚖️ الذهب (مثقال)</div>
                     <div style="display:flex; justify-content:space-between; margin-top:6px">
                         @foreach (['gold21' => 'عيار 21', 'gold24' => 'عيار 24'] as $code => $label)
                             @if ($quotes[$code])<div><div style="font-size:11px; opacity:.8">{{ $label }}</div><div style="font-size:20px; font-weight:800">{{ money($quotes[$code]['snapshot']->mid) }}</div></div>@endif

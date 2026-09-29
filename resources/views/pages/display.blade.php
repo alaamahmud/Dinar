@@ -24,7 +24,7 @@
             <div class="card p-8 text-center col-span-1"><div class="text-2xl text-muted">💵 100 دولار — شراء</div><div class="num text-7xl font-bold mt-3" data-live="usd" data-field="buy">{{ money($usd['snapshot']->buy) }}</div></div>
             <div class="card p-8 text-center col-span-1"><div class="text-2xl text-muted">💵 100 دولار — بيع</div><div class="num text-7xl font-bold mt-3" data-live="usd" data-field="sell">{{ money($usd['snapshot']->sell) }}</div></div>
             <div class="card p-8 text-center col-span-1 grid gap-3 text-2xl">
-                @foreach (['white' => '⚪ الأبيض', 'small' => '🪙 الفئات الصغيرة'] as $t => $l)
+                @foreach (['white' => '⚪ الأبيض', 'small' => '🔹 الفئات الصغيرة'] as $t => $l)
                     @if ($notes[$t])<div class="flex justify-between"><span class="text-muted">{{ $l }}</span><b class="num">{{ money($notes[$t]['snapshot']->mid) }}</b></div>@endif
                 @endforeach
             </div>
@@ -34,7 +34,7 @@
     <div class="grid grid-cols-3 gap-6 mb-6">
         @foreach (['gold24' => 'ذهب عيار 24', 'gold21' => 'ذهب عيار 21', 'gold18' => 'ذهب عيار 18'] as $code => $label)
             @if ($quotes[$code])
-                <div class="card p-6 text-center" style="border-color: #2563eb66"><div class="text-xl text-accent-400">🥇 {{ $label }} (مثقال)</div><div class="num text-5xl font-bold mt-2" data-live="{{ $code }}">{{ money($quotes[$code]['snapshot']->mid) }}</div></div>
+                <div class="card p-6 text-center" style="border-color: #2563eb66"><div class="text-xl text-accent-400">{{ $label }} (مثقال)</div><div class="num text-5xl font-bold mt-2" data-live="{{ $code }}">{{ money($quotes[$code]['snapshot']->mid) }}</div></div>
             @endif
         @endforeach
     </div>

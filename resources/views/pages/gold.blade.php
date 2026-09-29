@@ -1,7 +1,7 @@
 <x-layouts.app title="سعر الذهب">
     <div class="flex flex-wrap items-end justify-between gap-3 mb-5">
         <div>
-            <h1 class="text-2xl font-bold">🥇 سعر الذهب في العراق</h1>
+            <h1 class="text-2xl font-bold">⚖️ سعر الذهب في العراق</h1>
             <p class="text-muted text-sm mt-1">محسوب من سعر الأونصة العالمي وسعر الدولار في السوق الموازي. الأسعار للذهب الخام بدون أجور الصياغة.</p>
         </div>
         @if ($delayed)<a href="{{ route('pricing') }}" class="text-xs font-semibold text-accent-600">⏱ متأخر 15 دقيقة — اللحظي في برو</a>@endif

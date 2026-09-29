@@ -10,7 +10,7 @@
         <a href="{{ route('home') }}" target="_blank" class="font-bold text-brand-600">نبض الدينار</a>
         <span class="text-[11px] text-muted">{{ now()->format('H:i') }}</span>
     </div>
-    @foreach (['usd' => '💵 100 دولار (الكفاح)', 'gold21' => '🥇 مثقال عيار 21'] as $code => $label)
+    @foreach (['usd' => '💵 100 دولار (الكفاح)', 'gold21' => '⚖️ مثقال عيار 21'] as $code => $label)
         @if ($quotes[$code])
             <div class="flex justify-between items-center py-2 border-b border-soft last:border-0">
                 <span>{{ $label }}</span>

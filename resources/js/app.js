@@ -179,7 +179,7 @@ if (mapEl) {
         const bounds = [];
         places.forEach((p) => {
             if (!p.lat) return;
-            const icon = L.divIcon({ className: '', html: `<div style="font-size:22px">${p.type === 'gold' ? '🥇' : '💱'}</div>`, iconSize: [24, 24] });
+            const icon = L.divIcon({ className: '', html: `<div style="font-size:22px">${p.type === 'gold' ? '💍' : '💱'}</div>`, iconSize: [24, 24] });
             L.marker([p.lat, p.lng], { icon }).addTo(map).bindPopup(`<b>${p.name}</b><br>${p.address ?? ''}<br>⭐ ${p.rating}`);
             bounds.push([p.lat, p.lng]);
         });

@@ -11,7 +11,7 @@
                 @foreach ($result as $i => $m)
                     <div class="card card-pad flex justify-between items-center gap-4 {{ $i === 0 ? 'ring-2 ring-brand-500' : '' }}">
                         <div>
-                            <div class="font-bold">{{ $i === 0 ? '🏆 ' : '' }}{{ $m['name'] }}</div>
+                            <div class="font-bold">{{ $i === 0 ? '🎯 ' : '' }}{{ $m['name'] }}</div>
                             <div class="text-xs text-muted mt-1">{{ $m['note'] }} · العمولة ≈ <span class="num">${{ money($m['fee_usd'], 1) }}</span></div>
                         </div>
                         <div class="text-left shrink-0"><div class="num text-2xl font-bold">{{ money($m['received']) }}</div><div class="text-xs text-muted">دينار تستلمه</div></div>

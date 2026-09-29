@@ -5,7 +5,7 @@
             <p class="text-muted text-sm mt-1">يضيفها ويقيّمها المستخدمون — مثل تقييمات الخرائط، لكن للصرافة والذهب.</p>
         </div>
         <form class="flex gap-2 text-sm">
-            <select name="type" class="input !w-auto" onchange="this.form.submit()"><option value="">الكل</option><option value="exchange" @selected($type === 'exchange')>💱 صيرفة</option><option value="gold" @selected($type === 'gold')>🥇 ذهب</option></select>
+            <select name="type" class="input !w-auto" onchange="this.form.submit()"><option value="">الكل</option><option value="exchange" @selected($type === 'exchange')>💱 صيرفة</option><option value="gold" @selected($type === 'gold')>💍 ذهب</option></select>
             <select name="city" class="input !w-auto" onchange="this.form.submit()"><option value="">كل المدن</option>@foreach ($cities as $c)<option value="{{ $c->id }}" @selected($cityId === $c->id)>{{ $c->market_ar }}</option>@endforeach</select>
         </form>
     </div>
@@ -21,7 +21,7 @@ $chartData4 = $places->map(fn ($p) => ["name" => $p->name, "lat" => $p->lat, "ln
                 <div class="card card-pad !py-3 {{ $place->isFeatured() ? 'ring-1 ring-accent-500' : '' }}">
                     <div class="flex justify-between items-start gap-2">
                         <div>
-                            <div class="font-bold">{{ $place->type === 'gold' ? '🥇' : '💱' }} {{ $place->name }} @if ($place->isFeatured())<span class="badge badge-pro">مميّز</span>@endif</div>
+                            <div class="font-bold">{{ $place->type === 'gold' ? '💍' : '💱' }} {{ $place->name }} @if ($place->isFeatured())<span class="badge badge-pro">مميّز</span>@endif</div>
                             <div class="text-xs text-muted mt-0.5">{{ $place->city?->market_ar }} · {{ $place->address }}</div>
                         </div>
                         <div class="text-left shrink-0"><div class="font-bold text-accent-600">★ <span class="num">{{ number_format($place->rating_avg, 1) }}</span></div><div class="text-[11px] text-muted">{{ $place->rating_count }} تقييم</div></div>
